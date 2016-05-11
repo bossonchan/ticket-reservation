@@ -2,12 +2,17 @@ package com.whatever.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 
 @Entity
-public class User {
+public class User implements Serializable{
+
+	private static final long serialVersionUID = 4043761002696035238L;
+
 	@Id
 	@GeneratedValue
 	private Long id;

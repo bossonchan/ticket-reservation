@@ -2,44 +2,37 @@ package com.whatever.demo.web;
 
 import org.springframework.web.bind.annotation.*;
 
+import com.whatever.demo.Application;
 import com.whatever.demo.domain.User;
 import com.whatever.demo.service.UserManager;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.*;
 
-import org.springframework.session.Session;
-import org.springframework.session.SessionRepository;
 
 @RestController
-public class UserController<S extends Session> {
-	private static final Logger log = LoggerFactory.getLogger(UserController.class);
+public class UserController {
+	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
 	final UserManager userManager;
-	private SessionRepository<S> sessionRepo;
 	
 	static String SESSION_ATTR_USER = "session_attr_user";
-
+	
 	@Autowired
 	public UserController(UserManager userManager) {
 		this.userManager = userManager;
 	}
 
 	@RequestMapping(value = "/session", method = RequestMethod.POST)
-	User login(@RequestBody User userToLogIn, @CookieValue("SESSIONID") String sessionId, HttpServletResponse response) {
-		// create session if not found
-		S session = sessionRepo.getSession(sessionId);
-		if (session == null) {
-			session = sessionRepo.createSession();
-		}
+	User login(@RequestBody User userToLogIn, HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		
-		User currentUser = session.getAttribute(SESSION_ATTR_USER);
+		User currentUser = (User) session.getAttribute(SESSION_ATTR_USER);
 		if (currentUser != null) {
 			throw new LoginConflictException();
 		} else {
@@ -49,11 +42,6 @@ public class UserController<S extends Session> {
 			} else {
 				// update session
 				session.setAttribute(SESSION_ATTR_USER, userLoggedIn);
-				sessionRepo.save(session);
-				
-				// update cookie anyway.
-				response.addCookie(new Cookie("SESSIONID", session.getId()));
-				
 				return userLoggedIn;
 			}	
 		}
@@ -61,12 +49,12 @@ public class UserController<S extends Session> {
 	}
 	
 	@RequestMapping(value = "/session", method = RequestMethod.GET)
-	User getCurrentUser(@CookieValue("SESSIONID") String sessionId) {
-		S session = sessionRepo.getSession(sessionId);
+	User getCurrentUser(HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		if (session == null) {
 			throw new UserNotFoundException();
 		} else {
-			User currentUser = session.getAttribute(SESSION_ATTR_USER);
+			User currentUser = (User) session.getAttribute(SESSION_ATTR_USER);
 			if (currentUser == null) {
 				throw new UserNotFoundException();
 			}
@@ -75,12 +63,14 @@ public class UserController<S extends Session> {
 	}
 	
 	@RequestMapping(value = "/session", method = RequestMethod.DELETE)
-	void logout(@CookieValue("SESSIONID") String sessionId) {
-		S session = sessionRepo.getSession(sessionId);
-		if (session == null) {
+	User logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session == null || session.getAttribute(SESSION_ATTR_USER) == null) {
 			throw new LogoutConflictException();
 		} else {
+			User userLoggedOut = (User) session.getAttribute(SESSION_ATTR_USER);
 			session.removeAttribute(SESSION_ATTR_USER);
+			return userLoggedOut;
 		}
 	}
 	

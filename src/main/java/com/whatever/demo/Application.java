@@ -13,6 +13,8 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 import org.springframework.session.web.http.HeaderHttpSessionStrategy;
 import org.springframework.session.web.http.HttpSessionStrategy;
 
+import org.springframework.session.*;
+
 import com.whatever.demo.service.UserManager;
 import com.whatever.demo.domain.User;
 
@@ -24,27 +26,26 @@ public class Application {
 	
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
 	
+	// -- session configure --
 	@Bean
 	public JedisConnectionFactory connectionFactory() {
 		return new JedisConnectionFactory();
 	}
-	
-	@Bean
-	public HttpSessionStrategy httpSessionStrategy() {
-		return new HeaderHttpSessionStrategy();
-	}
+	// -- end session configure --
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 	
+	
+	// -- test data preparation --
 	@Bean
 	public CommandLineRunner prepareData(UserManager userManager) {
 		return (args) -> {
-			log.info("kladfjadsljflasdjfklasdlflasdfj");
 			userManager.register(new User("Shin", "123123"));
 			userManager.register(new User("Bosson Chan", "123123"));
 			userManager.register(new User("Spring Boot", "123123"));
 		};
 	}
+	// -- end test data preparation -- 
 }
