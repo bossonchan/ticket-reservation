@@ -3,3 +3,4 @@ target/
 .classpath
 .settings/
 dump.rdb
+.DS_Store

@@ -1,5 +1,7 @@
 package com.whatever.demo;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -10,12 +12,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
-import org.springframework.session.web.http.HeaderHttpSessionStrategy;
-import org.springframework.session.web.http.HttpSessionStrategy;
 
-import org.springframework.session.*;
 
-import com.whatever.demo.service.UserManager;
+import com.whatever.demo.domain.Reservation;
+import com.whatever.demo.domain.ReservationRepository;
+import com.whatever.demo.domain.UserRepository;
 import com.whatever.demo.domain.User;
 
 @Configuration
@@ -40,11 +41,20 @@ public class Application {
 	
 	// -- test data preparation --
 	@Bean
-	public CommandLineRunner prepareData(UserManager userManager) {
+	public CommandLineRunner prepareData(UserRepository userRepo, ReservationRepository reservationRepo) {
 		return (args) -> {
-			userManager.register(new User("Shin", "123123"));
-			userManager.register(new User("Bosson Chan", "123123"));
-			userManager.register(new User("Spring Boot", "123123"));
+			User me = userRepo.save(new User("Shin", "123123"));
+			reservationRepo.save(new Reservation(me, "13580512947"));
+			reservationRepo.save(new Reservation(me, "13580512948"));
+			reservationRepo.save(new Reservation(me, "13580512948"));
+			
+			List<Reservation> reservations = (List<Reservation>) reservationRepo.findByOwnerUsername("Shin");
+			Reservation reservation = reservations.get(0);
+			if (reservation == null) {
+				log.info("not found");
+			} else {
+				log.info("found: " + reservation.getOwner().getPassword());
+			}
 		};
 	}
 	// -- end test data preparation -- 

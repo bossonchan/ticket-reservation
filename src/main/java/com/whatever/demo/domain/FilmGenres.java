@@ -1,0 +1,26 @@
+package com.whatever.demo.domain;
+
+public enum FilmGenres {
+	ACTION,
+	ADVENTURE,
+	ANIMAION,
+	BIOGRAPHY,
+	COMEDY,
+	CRIME,
+	DOCUMENTARY,
+	DRAMA,
+	FAMILY,
+	FANSTASY,
+	FILM_NOIR,
+	HISTORY,
+	HORROR,
+	MUSIC,
+	MUSICAL,
+	MYSTERY,
+	ROMANCE,
+	SCI_FI,
+	SPORT,
+	THRILLER,
+	WAR,
+	WESTERN
+}

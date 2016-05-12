@@ -3,9 +3,14 @@ package com.whatever.demo.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
 
 @Entity
@@ -22,7 +27,15 @@ public class User implements Serializable{
 	
 	private String username;
 	private String avatar;
-
+	
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Reservation> reservations;
+	
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<FilmComment> filmComments;
+	
 	public User() {
 	}
 
@@ -64,4 +77,11 @@ public class User implements Serializable{
 		this.avatar = avatar;
 	}
 
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 }
