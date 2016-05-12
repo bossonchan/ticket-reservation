@@ -1,7 +1,9 @@
-package com.whatever.demo.domain;
+package com.whatever.demo.domain.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,19 +21,19 @@ public class City {
 	
 	private String name;
 	private String acronyms;
-	private int code;
+	private Long code;
 	
-	@OneToOne(mappedBy = "city", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private Location location;
+	private List<Location> locations = new ArrayList<Location>();
 
 	@OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private List<District> districts;
+	private List<District> districts = new ArrayList<District>();
 	
 	public City() {}
 	
-	public City(String name, String acronyms, int code) {
+	public City(String name, String acronyms, Long code) {
 		this.name = name;
 		this.acronyms = acronyms;
 		this.code = code;
@@ -61,11 +63,29 @@ public class City {
 		this.acronyms = acronyms;
 	}
 
-	public int getCode() {
+	public Long getCode() {
 		return code;
 	}
 
-	public void setCode(int code) {
+	public void setCode(Long code) {
 		this.code = code;
 	}
+
+	public List<Location> getLocations() {
+		return locations;
+	}
+
+	public void setLocations(List<Location> locations) {
+		this.locations = locations;
+	}
+
+	public List<District> getDistricts() {
+		return districts;
+	}
+
+	public void setDistricts(List<District> districts) {
+		this.districts = districts;
+	}
+	
+	
 }

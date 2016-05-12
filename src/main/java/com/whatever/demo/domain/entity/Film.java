@@ -1,8 +1,10 @@
-package com.whatever.demo.domain;
+package com.whatever.demo.domain.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,43 +26,42 @@ public class Film {
 	@GeneratedValue
 	private Long id;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "filmDescriptionId")
 	private FilmDescription filmDescription;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "film_cinema", joinColumns = { 
-		@JoinColumn(name = "cinemaId", nullable = false)
-	}, inverseJoinColumns = { 
-		@JoinColumn(name = "filmId", nullable = false) 
-	})
-	@JsonIgnore
-	private List<Cinema> cinemas;
+	@ManyToOne
+	@JoinColumn(name = "cinemaId")
+	private Cinema cinema;
 	
-	@ManyToMany
-	@JoinTable(name = "film_room", joinColumns = {
-		@JoinColumn(name = "roomId", nullable = false)
-	}, inverseJoinColumns = {
-		@JoinColumn(name = "filmId", nullable = false)
-	})
-	@JsonIgnore
-	private List<Room> rooms;
+	@ManyToOne
+	@JoinColumn(name = "roomId")
+	private Room room;
 	
 	@OneToMany(mappedBy = "film", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private List<ReservationItem> items;
+	private List<ReservationItem> items = new ArrayList<ReservationItem>();
 	
 	@OneToMany(mappedBy = "film", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private List<FilmComment> filmComments;
+	private List<FilmComment> filmComments = new ArrayList<FilmComment>();
 
-	private FilmGenres genres;
 	private Date startTime;
 	private Date endTime;
 	
 	private Float price;
 	
 	public Film() {}
+	
+	public Film(FilmDescription filmDescription, Cinema cinema, Room room, Date startTime, float price) {
+		this.filmDescription = filmDescription;
+		this.cinema = cinema;
+		this.room = room;
+		
+		this.startTime = startTime;
+		this.endTime = new Date(startTime.getTime() + filmDescription.getDuration() * 60 * 1000);
+		this.price = price;
+	}
 
 	public Long getId() {
 		return id;
@@ -78,20 +79,20 @@ public class Film {
 		this.filmDescription = filmDescription;
 	}
 
-	public List<Cinema> getCinemas() {
-		return cinemas;
+	public Cinema getCinema() {
+		return cinema;
 	}
 
-	public void setCinemas(List<Cinema> cinemas) {
-		this.cinemas = cinemas;
+	public void setCinema(Cinema cinema) {
+		this.cinema = cinema;
 	}
 
-	public List<Room> getRooms() {
-		return rooms;
+	public Room getRoom() {
+		return room;
 	}
 
-	public void setRooms(List<Room> rooms) {
-		this.rooms = rooms;
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 
 	public List<ReservationItem> getItems() {
@@ -132,14 +133,6 @@ public class Film {
 
 	public void setFilmComments(List<FilmComment> filmComments) {
 		this.filmComments = filmComments;
-	}
-
-	public FilmGenres getGenres() {
-		return genres;
-	}
-
-	public void setGenres(FilmGenres genres) {
-		this.genres = genres;
 	}
 
 }

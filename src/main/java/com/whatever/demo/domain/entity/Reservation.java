@@ -1,9 +1,11 @@
-package com.whatever.demo.domain;
+package com.whatever.demo.domain.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -25,8 +27,8 @@ public class Reservation {
 	@JoinColumn(name = "cinemaId")
 	private Cinema cinema;
 	
-	@OneToMany(mappedBy = "reservation")
-	private List<ReservationItem> items;
+	@OneToMany(mappedBy = "reservation", fetch = FetchType.LAZY)
+	private List<ReservationItem> items = new ArrayList<ReservationItem>();
 	
 	private Date createTime;
 	private String contactPhoneNumber;
@@ -34,13 +36,16 @@ public class Reservation {
 	
 	public Reservation() {}
 	
-	public Reservation(User owner, String contactPhoneNumber) {
+	public Reservation(User owner, Cinema cinema, String contactPhoneNumber) {
 		this.owner = owner;
+		
+		this.cinema = cinema;
+		
 		this.contactPhoneNumber = contactPhoneNumber;
 		this.createTime = new Date();
 		this.status = ReservationStatus.ACTIVE;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}

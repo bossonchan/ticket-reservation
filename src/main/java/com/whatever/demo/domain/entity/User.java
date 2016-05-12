@@ -1,4 +1,4 @@
-package com.whatever.demo.domain;
+package com.whatever.demo.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -30,11 +30,11 @@ public class User implements Serializable{
 	
 	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private List<Reservation> reservations;
+	private List<Reservation> reservations = new ArrayList<Reservation>();
 	
 	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private List<FilmComment> filmComments;
+	private List<FilmComment> filmComments = new ArrayList<FilmComment>();
 	
 	public User() {
 	}

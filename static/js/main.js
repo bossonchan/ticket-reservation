@@ -3,11 +3,17 @@ window.onload = function() {
   var username = "Shin" + (Math.random() * 1000 >> 0);
 
   var settings = {
-    "register"         : ["POST",   "/user",    { username: username, password: "123123" }],
-    "login"            : ["POST",   "/session", { username: username, password: "123123" }],
-    "logout"           : ["DELETE", "/session", {}],
-    "get-current-user" : ["GET",    "/session", {}],
-    "get-one-user"     : ["GET",    "/user/1",  {}]
+    "register"              : ["POST",   "/user",    { username: username, password: "123123" }],
+    "login"                 : ["POST",   "/session", { username: username, password: "123123" }],
+    "logout"                : ["DELETE", "/session", {}],
+    "get-current-user"      : ["GET",    "/session", {}],
+    "get-one-user"          : ["GET",    "/user/1",  {}],
+    "get-films"             : ["GET",    "/films?city=440100",   {}],
+    "get-film-detail"       : ["GET",    "/films/1",   {}],
+    "get-feasible-cinemas"  : ["GET",    "/films/1/cinemas",   {}],
+    "get-cinema-detail"     : ["GET",    "/cinemas/1",   {}],
+    "get-cinema-rooms"      : ["GET",    "/cinemas/1/rooms",   {}],
+    "get-room-seats"        : ["GET",    "/rooms/1/seats",   {}]
   };
 
   for (var key in settings) {

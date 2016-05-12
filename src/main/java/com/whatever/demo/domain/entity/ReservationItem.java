@@ -1,4 +1,4 @@
-package com.whatever.demo.domain;
+package com.whatever.demo.domain.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +32,16 @@ public class ReservationItem {
 	private Film film;
 	
 	public ReservationItem() {}
+	
+	public ReservationItem(Reservation reservation, Film film, RoomSeat seat) {
+		this.reservation = reservation;
+		
+		this.film = film;
+		
+		this.room = film.getRoom();
+		
+		this.seat = seat;
+	}
 
 	public Long getId() {
 		return id;

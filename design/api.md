@@ -122,7 +122,6 @@ Retrieve film list according to city code
   ]
 }
 ```
-
 ### GET /films/`:filmId`
 
 Retrieve detail infomation of a film

@@ -1,8 +1,10 @@
-package com.whatever.demo.domain;
+package com.whatever.demo.domain.entity;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,20 +24,30 @@ public class Room {
 	
 	@ManyToOne
 	@JoinColumn(name = "cinemaId")
+	@JsonIgnore
 	private Cinema cinema;
+	
+	@OneToMany(mappedBy = "room", fetch = FetchType.EAGER)
+	private List<RoomSeat> seats = new ArrayList<RoomSeat>();
 	
 	@OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private List<RoomSeat> seats;
+	private List<Film> films = new ArrayList<Film>();
 	
-	@ManyToMany(mappedBy = "rooms", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private List<Film> films;
+	private List<ReservationItem> items = new ArrayList<ReservationItem>();
 	
 	private String name;
 	private String description;
 	
 	public Room() {}
+	
+	public Room(Cinema cinema, String name, String description) {
+		this.name = name;
+		this.description = description;
+		this.cinema = cinema;
+	}
 
 	public Long getId() {
 		return id;

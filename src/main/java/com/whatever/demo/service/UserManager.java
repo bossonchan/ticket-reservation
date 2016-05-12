@@ -4,8 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.whatever.demo.domain.User;
-import com.whatever.demo.domain.UserRepository;
+import com.whatever.demo.domain.entity.User;
+import com.whatever.demo.domain.repository.UserRepository;
 
 @Service
 public class UserManager {

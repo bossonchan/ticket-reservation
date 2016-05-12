@@ -1,4 +1,4 @@
-package com.whatever.demo.domain;
+package com.whatever.demo.domain.entity;
 
 public enum FilmGenres {
 	ACTION,

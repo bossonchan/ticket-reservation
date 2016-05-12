@@ -3,7 +3,7 @@ package com.whatever.demo.web;
 import org.springframework.web.bind.annotation.*;
 
 import com.whatever.demo.Application;
-import com.whatever.demo.domain.User;
+import com.whatever.demo.domain.entity.User;
 import com.whatever.demo.service.UserManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,11 +34,11 @@ public class UserController {
 		
 		User currentUser = (User) session.getAttribute(SESSION_ATTR_USER);
 		if (currentUser != null) {
-			throw new LoginConflictException();
+			throw new ConflictException("You have been logged in.");
 		} else {
 			User userLoggedIn = this.userManager.login(userToLogIn.getUsername(), userToLogIn.getPassword());
 			if (userLoggedIn == null) {
-				throw new LoginFailedException();
+				throw new BadRequestException("Login failed, username or password is wrong.");
 			} else {
 				// update session
 				session.setAttribute(SESSION_ATTR_USER, userLoggedIn);
@@ -51,22 +51,19 @@ public class UserController {
 	@RequestMapping(value = "/session", method = RequestMethod.GET)
 	User getCurrentUser(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		if (session == null) {
-			throw new UserNotFoundException();
-		} else {
-			User currentUser = (User) session.getAttribute(SESSION_ATTR_USER);
-			if (currentUser == null) {
-				throw new UserNotFoundException();
-			}
-			return this.userManager.getUserInfo(currentUser.getId());
+
+		User currentUser = (User) session.getAttribute(SESSION_ATTR_USER);
+		if (currentUser == null) {
+			throw new UnauthorizedException("You should logged in first.");
 		}
+		return this.userManager.getUserInfo(currentUser.getId());
 	}
 	
 	@RequestMapping(value = "/session", method = RequestMethod.DELETE)
 	User logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if (session == null || session.getAttribute(SESSION_ATTR_USER) == null) {
-			throw new LogoutConflictException();
+			throw new ConflictException("You have been logged out.");
 		} else {
 			User userLoggedOut = (User) session.getAttribute(SESSION_ATTR_USER);
 			session.removeAttribute(SESSION_ATTR_USER);
@@ -83,38 +80,9 @@ public class UserController {
 	User getUserInfo(@PathVariable Long userId) {
 		User foundUser = this.userManager.getUserInfo(userId);
 		if (foundUser == null) {
-			throw new UserNotFoundException();
+			throw new NotFoundException("Could not find the user detail.");
 		} else {
 			return foundUser;
 		}
-	}
-}
-
-
-@ResponseStatus(HttpStatus.CONFLICT)
-class LoginConflictException extends RuntimeException {
-	public LoginConflictException() {
-		super("Login conflict: You have been logged in.");
-	}
-}
-
-@ResponseStatus(HttpStatus.CONFLICT)
-class LogoutConflictException extends RuntimeException {
-	public LogoutConflictException() {
-		super("Logout conflict: You have been logged out.");
-	}
-}
-
-@ResponseStatus(HttpStatus.BAD_REQUEST)
-class LoginFailedException extends RuntimeException {
-	public LoginFailedException() {
-		super("Login failed: username or password is wrong.");
-	}
-}
-
-@ResponseStatus(HttpStatus.NOT_FOUND)
-class UserNotFoundException extends RuntimeException {
-	public UserNotFoundException() {
-		super("could not find user.");
 	}
 }

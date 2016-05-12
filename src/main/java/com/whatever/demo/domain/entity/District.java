@@ -1,4 +1,7 @@
-package com.whatever.demo.domain;
+package com.whatever.demo.domain.entity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -6,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,17 +24,17 @@ public class District {
 	@JoinColumn(name = "cityId")
 	private City city;
 	
-	@OneToOne(mappedBy = "district", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "district", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private Location location;
+	private List<Location> locations = new ArrayList<Location>();
 	
 	private String name;
-	private int code;
+	private Long code;
 	
 	public District() {}
 	
-	public District(City city, String name, int code) {
-		this.city = city;
+	public District(City city, String name, Long code) {
+		this.city = city;		
 		this.name = name;
 		this.code = code;
 	}
@@ -51,12 +55,12 @@ public class District {
 		this.city = city;
 	}
 
-	public Location getLocation() {
-		return location;
+	public List<Location> getLocations() {
+		return locations;
 	}
 
-	public void setLocation(Location location) {
-		this.location = location;
+	public void setLocations(List<Location> locations) {
+		this.locations = locations;
 	}
 
 	public String getName() {
@@ -67,12 +71,13 @@ public class District {
 		this.name = name;
 	}
 
-	public int getCode() {
+	public Long getCode() {
 		return code;
 	}
 
-	public void setCode(int code) {
+	public void setCode(Long code) {
 		this.code = code;
 	}
+	
 	
 }

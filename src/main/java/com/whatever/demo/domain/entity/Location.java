@@ -1,9 +1,11 @@
-package com.whatever.demo.domain;
+package com.whatever.demo.domain.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -12,22 +14,22 @@ public class Location {
 	@GeneratedValue
 	private Long id;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "cityId")
 	private City city;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "districtId")
 	private District district;
 	
-	private String name;
+	private String road;
 	
 	public Location() {}
 	
-	public Location(City city, District district, String name) {
+	public Location(City city, District district, String road) {
 		this.city = city;
 		this.district = district;
-		this.name = name;
+		this.road = road;
 	}
 
 	public Long getId() {
@@ -54,12 +56,12 @@ public class Location {
 		this.district = district;
 	}
 
-	public String getName() {
-		return name;
+	public String getRoad() {
+		return road;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRoad(String road) {
+		this.road = road;
 	}
 	
 }
