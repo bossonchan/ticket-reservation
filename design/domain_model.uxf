@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>608</x>
+      <y>336</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Cinema
+--
+name
+description</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>352</x>
+      <y>344</y>
+      <w>80</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Room
+--
+name
+/numOfSeat
+description</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>512</y>
+      <w>136</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Reservation
+--
+createTime
+contactPhoneNumber</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>144</x>
+      <y>344</y>
+      <w>112</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>ReservationItem</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>352</x>
+      <y>16</y>
+      <w>80</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>FilmDesc
+--
+name
+duration
+country
+language
+releaseDate
+storyline
+score
+director
+poster</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>352</x>
+      <y>216</y>
+      <w>80</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>Film
+--
+startTime
+endTime
+price</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>384</x>
+      <y>144</y>
+      <w>104</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+m2=1
+describe for v</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>728</x>
+      <y>40</y>
+      <w>80</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>Actor
+--
+name
+avatar
+bio</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>536</x>
+      <y>40</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>FilmCast</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>424</x>
+      <y>32</y>
+      <w>128</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1..n
+has &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>608</x>
+      <y>32</y>
+      <w>136</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+m2=1
+contains &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>384</x>
+      <y>272</y>
+      <w>96</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+released at v</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>424</x>
+      <y>208</y>
+      <w>216</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=1
+&lt; has</panel_attributes>
+    <additional_attributes>10.0;20.0;250.0;20.0;250.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>424</x>
+      <y>336</y>
+      <w>200</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+m2=1
+&lt; has</panel_attributes>
+    <additional_attributes>10.0;20.0;230.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>200</x>
+      <y>240</y>
+      <w>168</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=1
+has &gt;</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0;190.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>248</x>
+      <y>336</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=1
+has &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>184</x>
+      <y>360</y>
+      <w>392</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1..n
+&lt; contains</panel_attributes>
+    <additional_attributes>470.0;210.0;10.0;210.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>384</y>
+      <w>56</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+has v</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>424</x>
+      <y>80</y>
+      <w>232</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=1
+&lt; has-product-of</panel_attributes>
+    <additional_attributes>10.0;20.0;270.0;20.0;270.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>768</x>
+      <y>152</y>
+      <w>80</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Location
+--
+road</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>152</y>
+      <w>136</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+has &gt;</panel_attributes>
+    <additional_attributes>10.0;230.0;10.0;10.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>768</x>
+      <y>448</y>
+      <w>96</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>User
+--
+name
+password
+email
+phoneNumber
+avatar
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>688</x>
+      <y>504</y>
+      <w>96</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+created by &gt;</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>472</x>
+      <y>440</y>
+      <w>88</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>RoomSeat
+--
+rowNumber
+colNumber</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>424</x>
+      <y>376</y>
+      <w>128</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1..n
+has &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0;120.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>224</x>
+      <y>360</y>
+      <w>264</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+has &gt;</panel_attributes>
+    <additional_attributes>310.0;140.0;10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>24</x>
+      <y>112</y>
+      <w>112</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>FilmComment
+--
+content
+createTime
+score
+replyTo</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>128</x>
+      <y>104</y>
+      <w>240</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+&lt; has</panel_attributes>
+    <additional_attributes>280.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>80</x>
+      <y>184</y>
+      <w>744</w>
+      <h>408</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+created by &gt;</panel_attributes>
+    <additional_attributes>910.0;450.0;910.0;490.0;10.0;490.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>24</x>
+      <y>40</y>
+      <w>96</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Genres
+--
+name</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>200</x>
+      <y>40</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>FilmGenres</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>272</x>
+      <y>32</y>
+      <w>96</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1..n
+&lt; has</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>112</x>
+      <y>32</y>
+      <w>104</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+m2=1
+&lt; contains</panel_attributes>
+    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>704</x>
+      <y>296</y>
+      <w>80</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>City
+--
+name
+acronyms
+code</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>832</x>
+      <y>296</y>
+      <w>80</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>District
+--
+name
+code</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>728</x>
+      <y>184</y>
+      <w>112</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=1
+has v</panel_attributes>
+    <additional_attributes>100.0;10.0;100.0;70.0;10.0;70.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>184</y>
+      <w>104</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=1
+has v</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;110.0;70.0;110.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>728</x>
+      <y>336</y>
+      <w>176</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+&lt; belong to</panel_attributes>
+    <additional_attributes>10.0;30.0;10.0;90.0;180.0;90.0;180.0;10.0</additional_attributes>
+  </element>
+</diagram>
