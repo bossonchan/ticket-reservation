@@ -2,7 +2,9 @@
 
 ---
 
-## Login - `POST /session`
+### POST /session
+
+Log in the system
 
 - username
 - password
@@ -13,37 +15,51 @@
 - 400
 - 409
 
----
+```json
+{
+  "id": 123123,
+  "username": "Shin",
+  "avatar"  : "/default.png"
+}
+```
 
-## Logout - `DELETE /session`
+### DELETE /session
 
----
-
-Nothing
+Logout the system
 
 ---
 
 - 200
 - 409
 
----
+```json
+{
+  "id": 123123,
+  "username": "Shin",
+  "avatar": "/default.png"
+}
+```
 
-## Retrieve current user info - `GET /session`
+### GET /session
 
----
-
-Nothing
+Retrieve current user info 
 
 ---
 
 - 200
 - 401
 
----
+```json
+{
+  "id": 123123,
+  "username": "Shin",
+  "avatar": "/default.png"
+}
+```
 
-## Register - `POST /user`
+### POST /user
 
----
+Register a new user
 
 - username
 - password
@@ -55,11 +71,17 @@ Nothing
 - 400
 - 403
 
----
+```json
+{
+  "id": 123123,
+  "username": "Shin",
+  "avatar": "/default.png"
+}
+```
 
-## Retrieve user info - `GET /user/{userId}`
+### GET /user/`:userId`
 
----
+Retrieve user info according to user's id
 
 - userId
 
@@ -68,11 +90,17 @@ Nothing
 - 200
 - 404
 
----
+```json
+{
+  "id": 123123,
+  "username": "Shin",
+  "avatar": "/default.png"
+}
+```
 
-## Retrieve film list according to city code - `GET /films?city={cityCode}`
+### GET /films?city=`:cityCode`
 
----
+Retrieve film list according to city code
 
 - cityCode
 
@@ -81,11 +109,23 @@ Nothing
 - 200
 - 400
 
----
+```json
+{
+  "total": 100,
+  "count": "10",
+  "films": [
+    {
+      "id": "filmId23123123123",
+      ...
+    },
+    ...
+  ]
+}
+```
 
-## Retrieve detail infomation of a film - `GET /films/{filmId}`
+### GET /films/`:filmId`
 
---- 
+Retrieve detail infomation of a film
 
 - filmId
 
@@ -94,11 +134,16 @@ Nothing
 - 200
 - 404
 
----
+```json
+{
+  "id": "filmId12313123",
+  ...
+}
+```
 
-## Retrieve feasible cinemas according to a film - `GET /films/{filmId}/cinemas`
+### GET /films/`:filmId`/cinemas
 
---- 
+Retrieve feasible cinemas according to a film
 
 - filmId
 
@@ -107,24 +152,16 @@ Nothing
 - 200
 - 400
 
----
+```json
+{
+  "id": "cinema_id_123123123",
+  ...
+}
+```
 
-## Retrieve detail information of a cinema - `GET /cinemas/{cinemaId}`
+### GET /cinemas/`:cinemaId`
 
----
-
-- cinemaId
-
----
-
-- 200
-- 404
-
----
-
-## Retrieve room list of a cinema - `GET /cinemas/{cinemaId}/rooms`
-
----
+Retrieve detail information of a cinema
 
 - cinemaId
 
@@ -133,11 +170,41 @@ Nothing
 - 200
 - 404
 
+```json
+{
+  "id": "cinema_id_123lk12312312",
+  ...
+}
+```
+
+### GET /cinemas/`:cinemaId`/rooms
+
+Retrieve room list of a cinema
+
+- cinemaId
+
 ---
 
-## Retrieve seat list of a room - `GET /rooms/{roomId}/seats`
+- 200
+- 404
 
----
+```json
+{
+  "total": 100,
+  "count": 10,
+  "rooms": [
+    {
+      "id": "room_id_123129318239",
+      ...
+    },
+    ...
+  ]
+}
+```
+
+### GET /rooms/`:roomId`/seats
+
+Retrieve seat list of a room
 
 - roomId
 
@@ -146,11 +213,23 @@ Nothing
 - 200
 - 404
 
----
+```json
+{
+  "total": 100,
+  "count": 10,
+  "seats": [
+    {
+      "id": "seat_id_123129318239",
+      ...
+    },
+    ...
+  ]
+}
+```
 
-## Make a film reservation - `POST /reservation`
+### POST /reservation
 
----
+Make a film reservation
 
 - filmId
 - seatId
@@ -162,11 +241,16 @@ Nothing
 - 401
 - 404
 
----
+```json
+{
+  "id": "reservation_id_123123123",
+  ...
+}
+```
 
-## Cancel reservation - `DELETE /reservation/{reservationId}`
+### DELETE /reservation/`:reservationId`
 
----
+Cancel reservation
 
 - reservationId
 
@@ -175,26 +259,41 @@ Nothing
 - 200
 - 404
 
----
+```json
+{
+  "id": "reservation_id_123123123",
+  ...
+}
+```
 
-## Retrieve current user's reservation list - `GET /reservation`
+### GET /reservation
 
----
-
-Nothing
+Retrieve current user's reservation list
 
 ---
 
 - 200
 - 401
 
----
+```json
+{
+  "total": 100,
+  "count": 10,
+  "reservations": [
+    {
+      "id": "reservation_id_123129318239",
+      ...
+    },
+    ...
+  ]
+}
+```
 
-##  Retrieve detail information of a reservation - `GET /reservation/{reservationId}`
+### GET /reservation/`:reservationId`
 
----
+Retrieve detail information of a reservation
 
-Nothing
+- reservationId
 
 ---
 
@@ -203,4 +302,10 @@ Nothing
 - 403
 - 404
 
----
+```json
+{
+  "id": "reservation_id_123129318239",
+  ...
+}
+```
+
