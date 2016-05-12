@@ -30,6 +30,7 @@ public class Reservation {
 	
 	private Date createTime;
 	private String contactPhoneNumber;
+	private ReservationStatus status;
 	
 	public Reservation() {}
 	
@@ -37,6 +38,7 @@ public class Reservation {
 		this.owner = owner;
 		this.contactPhoneNumber = contactPhoneNumber;
 		this.createTime = new Date();
+		this.status = ReservationStatus.ACTIVE;
 	}
 
 	public Long getId() {

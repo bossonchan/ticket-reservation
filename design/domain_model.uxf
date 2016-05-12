@@ -36,12 +36,13 @@ description</panel_attributes>
       <x>560</x>
       <y>512</y>
       <w>136</w>
-      <h>48</h>
+      <h>64</h>
     </coordinates>
     <panel_attributes>Reservation
 --
 createTime
-contactPhoneNumber</panel_attributes>
+contactPhoneNumber
+status</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -408,13 +409,13 @@ m2=0..n
       <x>80</x>
       <y>184</y>
       <w>744</w>
-      <h>408</h>
+      <h>424</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=0..n
 created by &gt;</panel_attributes>
-    <additional_attributes>910.0;450.0;910.0;490.0;10.0;490.0;10.0;10.0</additional_attributes>
+    <additional_attributes>910.0;450.0;910.0;510.0;10.0;510.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
